@@ -1,0 +1,31 @@
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Tel</th>
+          <th>Data Matricula</th>
+          <th>Vencimento</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aluno of alunos">
+          <td>{{aluno.nome}}</td>
+          <td>{{aluno.cpf}}</td>
+          <td>{{aluno.tel}}</td>
+          <td>{{aluno.dataEnt}}</td>
+          <td>{{aluno.dataVenc}}</td>
+          <td>
+
+            <button type="button" class="btn btn-default" (click)="editAluno(aluno)">
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
