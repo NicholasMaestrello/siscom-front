@@ -19,5 +19,11 @@ export class AlunoComponent implements OnInit {
 
   onEditAluno(aluno:AlunoDTO){
     this.aluno = aluno;
+    this.form = true;
+  }
+
+  newAluno(){
+    this.aluno = new AlunoDTO();
+    this.form = true;
   }
 }

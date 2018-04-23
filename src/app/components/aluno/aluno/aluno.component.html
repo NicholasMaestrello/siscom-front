@@ -1,7 +1,7 @@
 <div style="text-align: center;">
     <h1>Alunos</h1>
 </div>
-<button type="button" class="btn btn-primary">Novo</button>
+<button type="button" class="btn btn-primary" (click)="newAluno()">Novo</button>
 <app-aluno-table *ngIf="!form" (onEditAluno)="onEditAluno($event)"></app-aluno-table>
 <br><br><br><br><br>
 <app-aluno-form *ngIf="form" [aluno]="aluno"></app-aluno-form>
