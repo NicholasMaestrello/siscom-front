@@ -16,8 +16,8 @@
           <td>{{aluno.nome}}</td>
           <td>{{aluno.cpf}}</td>
           <td>{{aluno.tel}}</td>
-          <td>{{aluno.dataEnt}}</td>
-          <td>{{aluno.dataVenc}}</td>
+          <td>{{aluno.dataEnt | date: 'dd/MM/yyyy'}}</td>
+          <td>{{aluno.dataVenc | date: 'dd/MM/yyyy'}}</td>
           <td>
 
             <button type="button" class="btn btn-default" (click)="editAluno(aluno)">

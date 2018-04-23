@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {AlunoDTO} from '../../../model/alunos.model'
+import {AlunoDTO} from '../../../model/aluno.model'
 
 @Component({
   selector: 'app-aluno',
@@ -25,5 +25,11 @@ export class AlunoComponent implements OnInit {
   newAluno(){
     this.aluno = new AlunoDTO();
     this.form = true;
+  }
+
+  onCancelar(resposta: boolean){
+    console.log(resposta);
+    this.aluno = undefined;
+    this.form = false;
   }
 }

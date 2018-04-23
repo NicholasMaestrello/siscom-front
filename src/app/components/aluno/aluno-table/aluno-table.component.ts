@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
-import {AlunoDTO} from '../../../model/alunos.model'
+import {AlunoDTO} from '../../../model/aluno.model'
 
 @Component({
   selector: 'app-aluno-table',
