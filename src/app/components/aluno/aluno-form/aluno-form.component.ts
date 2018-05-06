@@ -15,6 +15,7 @@ export class AlunoFormComponent implements OnInit {
   @Input() aluno : AlunoDTO;
   @Output() onCancelar = new EventEmitter<boolean>();
   cursos: CursoDTO[];
+  cursosSelecionados: CursoDTO[];
 
   alunoForm: FormGroup;
   constructor(private httpService: HttpService, private http: HttpClient,
@@ -34,10 +35,20 @@ export class AlunoFormComponent implements OnInit {
   }
 
   save(){
-    console.log(this.aluno);
+    this.aluno.cursos = this.selecionarCursos();
+    this.http.post('http://localhost:8020/api/aluno', this.aluno).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+    this.onCancelar.emit(true);
   }
 
   cancelar(){
     this.onCancelar.emit(true);
+  }
+
+  selecionarCursos() {
+    return this.cursos
+              .filter(opt => opt.checked)
   }
 }

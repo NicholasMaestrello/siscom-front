@@ -6,4 +6,5 @@ export class CursoDTO {
 	responsavel: string;
 	quantidadeAlunos: number;
 	nivel: string;
+	checked: boolean;
 }

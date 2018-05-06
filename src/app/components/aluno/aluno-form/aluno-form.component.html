@@ -1,5 +1,5 @@
 <!-- <form [formGroup]="alunoForm"> -->
-<form >
+<form>
   <div class="form-group">
     <div class="form-row">
       <div class="col-md-6">
@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputEmail1">CPF</label>
-        <input class="form-control" id="alunoCPF" type="text" name="cpf"  [(ngModel)]="aluno.cpf" placeholder="CPF do Aluno ou Responsavel">
+        <input class="form-control" id="alunoCPF" type="text" name="cpf" [(ngModel)]="aluno.cpf" placeholder="CPF do Aluno ou Responsavel">
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInputEmail1">Bairro</label>
-        <input class="form-control" id="alunoBairro" type="email" name="bairro" [(ngModel)]="aluno.bairro"  placeholder="Bairro do Aluno">
+        <input class="form-control" id="alunoBairro" type="email" name="bairro" [(ngModel)]="aluno.bairro" placeholder="Bairro do Aluno">
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
     <div class="form-row">
       <div class="col-md-6">
         <label for="exampleInputEmail1">Telefone</label>
-        <input class="form-control" id="alunoTel" type="number" name="telefone" [(ngModel)]="aluno.tel"  placeholder="EX: 99992222">
+        <input class="form-control" id="alunoTel" type="number" name="telefone" [(ngModel)]="aluno.tel" placeholder="EX: 99992222">
       </div>
       <div class="col-md-6">
         <label for="exampleInputEmail1">Celular</label>
@@ -37,10 +37,13 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="sel1">Curso</label>
-    <select class="form-control" id="sel1" name="curso">
-      <option *ngFor="let curso of cursos">{{curso?.modalidade?.nome}}</option>
-    </select>
+    <label>Cursos</label>
+    <div  class="col-md-3">
+        <label *ngFor="let curso of cursos">
+          <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">{{curso?.modalidade?.nome}}
+        </label>
+    </div>
+
   </div>
   <div class="form-group">
     <div class="form-row">
