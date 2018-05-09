@@ -1,38 +1,37 @@
-<!-- <form [formGroup]="alunoForm"> -->
-<form>
+<form [formGroup]="alunoForm">
   <div class="form-group">
-    <div class="form-row">
-      <div class="col-md-6">
+    <div class="form-row" >
+      <div class="col-md-6" >
         <label for="exampleInputName">Nome</label>
-        <input class="form-control" id="nomeAluno" name="nome" type="text" aria-describedby="nameHelp" [(ngModel)]="aluno.nome" placeholder="Nome do Aluno">
+        <input class="form-control" id="nomeAluno" name="nome" formControlName="nome" type="text" aria-describedby="nameHelp" maxlength="50" [(ngModel)]="aluno.nome" placeholder="Nome do Aluno">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <label for="exampleInputEmail1">CPF</label>
-        <input class="form-control" id="alunoCPF" type="text" name="cpf" [(ngModel)]="aluno.cpf" placeholder="CPF do Aluno ou Responsavel">
+        <input class="form-control" id="alunoCPF" type="text" name="cpf" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. 44455588800" maxlength="11">
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="form-row">
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <label for="exampleInputLastName">Endereço</label>
-        <input class="form-control" id="alunoEndereco" type="text" name="endereco" [(ngModel)]="aluno.endereco" placeholder="Endereço do aluno">
+        <input class="form-control" id="alunoEndereco" type="text" name="endereco" formControlName="endereco" [(ngModel)]="aluno.endereco" maxlength="50" placeholder="Endereço do aluno">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <label for="exampleInputEmail1">Bairro</label>
-        <input class="form-control" id="alunoBairro" type="email" name="bairro" [(ngModel)]="aluno.bairro" placeholder="Bairro do Aluno">
+        <input class="form-control" id="alunoBairro" type="email" name="bairro" formControlName="bairro" [(ngModel)]="aluno.bairro" maxlength="50" placeholder="Bairro do Aluno">
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="form-row">
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <label for="exampleInputEmail1">Telefone</label>
-        <input class="form-control" id="alunoTel" type="number" name="telefone" [(ngModel)]="aluno.tel" placeholder="EX: 99992222">
+        <input class="form-control" id="alunoTel" type="text" name="telefone" formControlName="telefone" [(ngModel)]="aluno.tel" maxlength="10" placeholder="EX: 1188882222">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <label for="exampleInputEmail1">Celular</label>
-        <input class="form-control" id="alunoTel" type="number" name="celular" [(ngModel)]="aluno.cel" placeholder="EX: 955552222">
+        <input class="form-control" id="alunoTel" type="text" name="celular" formControlName="celular" [(ngModel)]="aluno.cel" maxlength="11" placeholder="EX: 11955552222">
       </div>
     </div>
   </div>
@@ -40,7 +39,7 @@
     <label>Cursos</label>
     <div  class="col-md-3">
         <label *ngFor="let curso of cursos">
-          <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">{{curso?.modalidade?.nome}}
+          <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">{{curso?.modalidade?.nome}} - {{curso?.nivel}}
         </label>
     </div>
 
@@ -49,22 +48,24 @@
     <div class="form-row">
       <div class="col-md-6">
         <label for="exampleInputEmail1">Data Entrada</label>
-        <input class="form-control" id="alunoDataEntrada" type="date" name="entrada" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
+        <input class="form-control" id="alunoDataEntrada" type="date" name="entrada" [ngModelOptions]="{standalone: true}" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
       </div>
       <div class="col-md-6">
         <label for="exampleInputEmail1">Data Vencimento</label>
-        <input class="form-control" id="alunoDataVencimento" type="date" name="vencimento" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
+        <input class="form-control" id="alunoDataVencimento" type="date" name="vencimento" [ngModelOptions]="{standalone: true}" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="form-row">
       <div class="col-md-6">
-        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+        <button type="button" class="btn btn-primary" disabled="!formularioStatus" (click)="save()">Salvar</button>
       </div>
       <div class="col-md-6">
         <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
       </div>
     </div>
   </div>
+  <span>Status do form</span>
+  {{formularioStatus}}
 </form>

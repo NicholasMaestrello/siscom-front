@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgModel, FormGroup, FormBuilder } from '@angular/forms';
+import { NgModel, FormGroup, FormBuilder, Validator, Validators, FormControl } from '@angular/forms';
 
 import { AlunoDTO } from '../../../model/aluno.model';
 import { CursoDTO } from '../../../model/curso.model';
@@ -19,11 +19,10 @@ export class AlunoFormComponent implements OnInit {
 
   alunoForm: FormGroup;
   constructor(private httpService: HttpService, private http: HttpClient,
-    @Inject(FormBuilder) fb: FormBuilder) {
-    this.alunoForm = fb.group({});
-  }
+    @Inject(FormBuilder) private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createForm();
     this.getCursos().subscribe(
       data => {
         this.cursos = data;
@@ -82,5 +81,45 @@ export class AlunoFormComponent implements OnInit {
             valueGeral.checked = true;
         })
       })
+  }
+
+  get formularioStatus(){
+    return this.alunoForm.status;
+  }
+
+  createForm() {
+    this.alunoForm = new FormGroup({
+      nome: new FormControl(
+        this.aluno.nome, [
+          Validators.required,
+          Validators.maxLength(50)
+        ]),
+      endereco: new FormControl(
+        this.aluno.endereco, [
+          Validators.required,
+          Validators.maxLength(50)
+        ]
+      ),
+      bairro: new FormControl(
+        this.aluno.bairro, [
+          Validators.required,
+          Validators.maxLength(50)
+        ]),
+      cpf: new FormControl(
+        this.aluno.cpf, [
+          Validators.required,
+          Validators.maxLength(11)
+        ]),
+      telefone: new FormControl(
+        this.aluno.tel, [
+          Validators.required,
+          Validators.maxLength(10)
+        ]),
+      celular: new FormControl(
+        this.aluno.cel, [
+          Validators.required,
+          Validators.maxLength(11)
+        ])
+    });
   }
 }
