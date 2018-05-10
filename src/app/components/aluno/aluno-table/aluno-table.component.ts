@@ -21,4 +21,8 @@ export class AlunoTableComponent implements OnInit {
   editAluno(aluno: AlunoDTO){
     this.onEditAluno.emit(Object.assign({}, aluno));
   }
+
+  excluirAluno(aluno: AlunoDTO){
+    console.log(aluno);
+  }
 }
