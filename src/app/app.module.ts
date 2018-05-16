@@ -15,6 +15,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpService } from './shared/http.service';
+import { NotFoundComponent } from './shared/component/not-found/not-found.component';
+
+import {} from 'angular2'
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { HttpService } from './shared/http.service';
     FooterComponent,
     NavbarComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
