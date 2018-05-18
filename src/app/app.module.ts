@@ -14,10 +14,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpService } from './shared/http.service';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
 
-import {} from 'angular2'
+import { CommonModule } from '@angular/common';
+import { HttpService } from './shared/services/http.service';
+import { LoginService } from './components/login/service/login.service';
+import { AlunoService } from './components/aluno/service/aluno.service';
 
 
 @NgModule({
@@ -34,13 +36,14 @@ import {} from 'angular2'
     NotFoundComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [HttpService],
+  providers: [HttpService, LoginService, AlunoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

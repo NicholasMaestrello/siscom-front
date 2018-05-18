@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgModel, FormGroup, FormBuilder, Validator, Validators, FormControl } from '@angular/forms';
+import { NgModel, FormGroup, Validator, Validators, FormControl } from '@angular/forms';
 
 import { AlunoDTO } from '../../../model/aluno.model';
 import { CursoDTO } from '../../../model/curso.model';
-import { HttpService } from '../../../shared/http.service';
+import { AlunoService } from '../service/aluno.service';
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
@@ -18,8 +18,7 @@ export class AlunoFormComponent implements OnInit {
   cursosSelecionados: CursoDTO[];
 
   alunoForm: FormGroup;
-  constructor(private httpService: HttpService, private http: HttpClient,
-    @Inject(FormBuilder) private fb: FormBuilder) { }
+  constructor(private http: HttpClient, private alunoService: AlunoService) { }
 
   ngOnInit() {
     this.createForm();
@@ -39,7 +38,6 @@ export class AlunoFormComponent implements OnInit {
   save() {
     this.aluno.cursos = this.selecionarCursos();
     if (this.aluno.id && this.aluno.id > 0) {
-      console.log('é put porra !')
       this.http.put('http://localhost:8020/api/aluno', this.aluno).subscribe(
         res => {
           console.log(res);
@@ -52,7 +50,7 @@ export class AlunoFormComponent implements OnInit {
       );
     }
     else
-      this.http.post('http://localhost:8020/api/aluno', this.aluno).subscribe(
+      this.alunoService.postAluno(this.aluno).subscribe(
         res => {
           console.log(res);
           this.onCancelar.emit(true);

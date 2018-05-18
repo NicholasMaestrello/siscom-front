@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {AlunoDTO} from '../../../model/aluno.model'
 import { AlunoTableComponent } from '../aluno-table/aluno-table.component';
 import { HttpClient } from '@angular/common/http';
+import { AlunoService } from '../service/aluno.service';
 
 @Component({
   selector: 'app-aluno',
@@ -14,7 +15,7 @@ export class AlunoComponent implements OnInit {
   aluno: AlunoDTO;
   listaAlunos: AlunoDTO[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private alunoService: AlunoService) { }
 
   ngOnInit() {
     this.getAlunos();
@@ -23,12 +24,12 @@ export class AlunoComponent implements OnInit {
   getAlunos(){
     this.getUrl().subscribe(
       data => this.listaAlunos = data,
-      err => console.log("erro na requisiçaõ")
+      err => console.log(err)
     )
   }
 
   getUrl(){
-    return this.http.get<AlunoDTO[]>('http://localhost:8020/api/aluno');
+    return this.alunoService.getAlunos();
   }
 
   onEditAluno(aluno:AlunoDTO){
