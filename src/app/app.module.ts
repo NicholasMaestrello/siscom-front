@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,  ReactiveFormsModule  } from '@angular/forms';
 
 
@@ -20,6 +20,8 @@ import { CommonModule } from '@angular/common';
 import { HttpService } from './shared/services/http.service';
 import { LoginService } from './components/login/service/login.service';
 import { AlunoService } from './components/aluno/service/aluno.service';
+import { AuthFilterService } from './shared/services/authfilter.service';
+import { FilterRequisitionService } from './shared/services/filter.requisition.service';
 
 
 @NgModule({
@@ -41,9 +43,14 @@ import { AlunoService } from './components/aluno/service/aluno.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpService, LoginService, AlunoService],
+  providers: [HttpService,
+    LoginService,
+    AlunoService,
+    AuthFilterService,
+    { provide: HTTP_INTERCEPTORS, useClass: FilterRequisitionService, multi: true } 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,19 +7,23 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
 import { HomeComponent } from '../../components/home/home.component'
 import { AlunoComponent } from '../../components/aluno/aluno/aluno.component';
 import { NotFoundComponent } from '../../shared/component/not-found/not-found.component';
+import { AuthFilterService } from '../../shared/services/authfilter.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', component: DashboardComponent, children: 
-    [
-      { path: 'home', component: HomeComponent },
-      { path: 'aluno', component: AlunoComponent }
-    ]
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthFilterService],
+    children:
+      [
+        { path: 'home', component: HomeComponent },
+        { path: 'aluno', component: AlunoComponent }
+      ]
   },
-  { path: 'notfound', component: NotFoundComponent },
-  { path: '', redirectTo: '/notfound', pathMatch: 'full' },
-  { path: '**', redirectTo: '/notfound', pathMatch: 'full' }
+  { path: 'notfound', canActivate: [AuthFilterService], component: NotFoundComponent },
+  { path: '', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full' },
+  { path: '**', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full' }
 ]
 
 @NgModule({
