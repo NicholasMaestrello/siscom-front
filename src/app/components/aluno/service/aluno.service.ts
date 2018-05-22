@@ -3,7 +3,6 @@ import { HttpService } from '../../../shared/services/http.service';
 import { AlunoDTO } from '../../../model/aluno.model';
 import { Observable } from 'rxjs/Observable';
 import { CursoDTO } from '../../../model/curso.model';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 @Injectable()
 export class AlunoService {
