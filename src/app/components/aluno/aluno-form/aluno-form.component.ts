@@ -141,16 +141,38 @@ export class AlunoFormComponent implements OnInit {
     return this.alunoForm.get('datasGroup');
   }
 
+  get nome() {
+    return this.alunoForm.get('nome')
+  }
+
+  get endereco() {
+    return this.alunoForm.get('endereco')
+  }
+
+  get bairro() {
+    return this.alunoForm.get('bairro')
+  }
+
   get cpf() {
     return this.alunoForm.get('cpf')
+  }
+
+  get telefone() {
+    return this.alunoForm.get('telefone')
   }
 
   get celular() {
     return this.alunoForm.get('celular')
   }
 
-  get telefone() {
-    return this.alunoForm.get('telefone')
+  get dtEntrada() {
+    const group = this.datasGroup;
+    return group ? group.get('dtEntrada') : null;
+  }
+
+  get dtVencimento() {
+    const group = this.datasGroup;
+    return group ? group.get('dtVencimento') : null;
   }
 
   validateData(): ValidatorFn {
