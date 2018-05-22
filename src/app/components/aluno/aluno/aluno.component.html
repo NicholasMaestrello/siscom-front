@@ -1,9 +1,12 @@
 <div id="divAlunoComponent">
     <div style="text-align: center;">
-        <h1>Alunos</h1>
+        <h1>Matriculas</h1>
     </div>
-    <button *ngIf="!form" type="button" class="btn btn-primary" (click)="newAluno()">
-        <span class="glyphicon glyphicon-plus"></span> Novo</button>
-    <app-aluno-table *ngIf="!form" (onEditAluno)="onEditAluno($event)" [alunos]="listaAlunos"></app-aluno-table>
+    <div class="row">
+        <button *ngIf="!form" type="button" class="col-md-2 btn btn-primary botao-novo" (click)="newAluno()">
+            <span class="glyphicon glyphicon-plus"></span> Novo</button>
+    </div>
+    <app-aluno-table *ngIf="!form" (onEditAluno)="onEditAluno($event)" (onExcluirAluno)="onExcluirAluno($event)" [alunos]="listaAlunos"></app-aluno-table>
     <app-aluno-form *ngIf="form" [aluno]="aluno" (onCancelar)="onCancelar($event)"></app-aluno-form>
+
 </div>

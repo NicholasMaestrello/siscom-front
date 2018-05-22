@@ -11,6 +11,7 @@ import {AlunoDTO} from '../../../model/aluno.model'
 })
 export class AlunoTableComponent implements OnInit {
   @Output() onEditAluno = new EventEmitter<AlunoDTO>();
+  @Output() onExcluirAluno = new EventEmitter<AlunoDTO>();
   @Input()alunos: AlunoDTO[] = [];
 
   constructor() { }
@@ -23,6 +24,6 @@ export class AlunoTableComponent implements OnInit {
   }
 
   excluirAluno(aluno: AlunoDTO){
-    console.log(aluno);
+    this.onExcluirAluno.emit(aluno);
   }
 }

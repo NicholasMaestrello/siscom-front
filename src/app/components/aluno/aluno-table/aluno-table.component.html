@@ -3,6 +3,7 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nome</th>
           <th>CPF</th>
           <th>Tel</th>
@@ -13,6 +14,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let aluno of alunos">
+            <td>{{aluno.id}}</td>
           <td>{{aluno.nome}}</td>
           <td>{{aluno.cpf}}</td>
           <td>{{aluno.tel}}</td>

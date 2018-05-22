@@ -92,7 +92,8 @@ export class AlunoFormComponent implements OnInit {
   createForm() {
     this.alunoForm = new FormGroup({
       'nome': new FormControl(
-        this.aluno.nome, [
+        { value: this.aluno.nome, disabled: this.aluno.id ? true : false },
+        [
           Validators.required,
           Validators.maxLength(50)
         ]),
@@ -108,7 +109,8 @@ export class AlunoFormComponent implements OnInit {
           Validators.maxLength(50)
         ]),
       'cpf': new FormControl(
-        this.aluno.cpf, [
+        { value: this.aluno.cpf, disabled: this.aluno.id ? true : false },
+        [
           Validators.required,
           Validators.pattern('^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$')
         ]),
@@ -124,7 +126,8 @@ export class AlunoFormComponent implements OnInit {
         ]),
       'datasGroup': new FormGroup({
         'dtEntrada': new FormControl(
-          this.aluno.dataEnt, [
+          { value: this.aluno.dataEnt, disabled: this.aluno.id ? true : false },
+          [
             Validators.required
           ]
         ),

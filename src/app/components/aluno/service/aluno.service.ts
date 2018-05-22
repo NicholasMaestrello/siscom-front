@@ -3,6 +3,7 @@ import { HttpService } from '../../../shared/services/http.service';
 import { AlunoDTO } from '../../../model/aluno.model';
 import { Observable } from 'rxjs/Observable';
 import { CursoDTO } from '../../../model/curso.model';
+import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 @Injectable()
 export class AlunoService {
@@ -16,6 +17,10 @@ export class AlunoService {
 
   postAluno(aluno: AlunoDTO): Observable<any> {
     return this.http.post<any>(this.url, aluno);
+  }
+
+  deleteAluno(idAluno: number): Observable<any> {
+    return this.http.delete<any>(this.url, String(idAluno));
   }
 
   getCursos(): Observable<CursoDTO[]>{

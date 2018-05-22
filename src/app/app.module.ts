@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule,  ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-import {AppRoutingModule} from './router/app-routing/app-routing.module'
+import { AppRoutingModule } from './router/app-routing/app-routing.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlunoComponent } from './components/aluno/aluno/aluno.component';
@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
 import { HttpService } from './shared/services/http.service';
@@ -22,6 +23,7 @@ import { LoginService } from './components/login/service/login.service';
 import { AlunoService } from './components/aluno/service/aluno.service';
 import { AuthFilterService } from './shared/services/authfilter.service';
 import { FilterRequisitionService } from './shared/services/filter.requisition.service';
+import { ModalComponent } from './shared/component/modal/modal.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { FilterRequisitionService } from './shared/services/filter.requisition.s
     NavbarComponent,
     DashboardComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -43,14 +46,18 @@ import { FilterRequisitionService } from './shared/services/filter.requisition.s
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [HttpService,
     LoginService,
     AlunoService,
     AuthFilterService,
-    { provide: HTTP_INTERCEPTORS, useClass: FilterRequisitionService, multi: true } 
+    { provide: HTTP_INTERCEPTORS, useClass: FilterRequisitionService, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalComponent
+  ]
 })
 export class AppModule { }

@@ -20,8 +20,8 @@ export class HttpService {
     return this.http.put<T>(this.baseUrl + url, body);
   }
 
-  public delete<T>(url: string): Observable<T>{
-    return this.http.get<T>(this.baseUrl + url);
+  public delete<T>(url: string, id: String): Observable<T>{
+    return this.http.delete<T>(this.baseUrl + url + `/${id}`);
   }
 
   public testar() {
