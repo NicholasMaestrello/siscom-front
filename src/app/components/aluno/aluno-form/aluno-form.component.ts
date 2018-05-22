@@ -1,10 +1,14 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgModel, FormGroup, Validator, Validators, FormControl } from '@angular/forms';
+import { NgModel, FormGroup, Validator, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { AlunoDTO } from '../../../model/aluno.model';
 import { CursoDTO } from '../../../model/curso.model';
 import { AlunoService } from '../service/aluno.service';
+
+import * as moment from 'moment';
+
+
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
@@ -81,43 +85,80 @@ export class AlunoFormComponent implements OnInit {
       })
   }
 
-  get formularioStatus(){
+  get formularioStatus() {
     return this.alunoForm.status;
   }
 
   createForm() {
     this.alunoForm = new FormGroup({
-      nome: new FormControl(
+      'nome': new FormControl(
         this.aluno.nome, [
           Validators.required,
           Validators.maxLength(50)
         ]),
-      endereco: new FormControl(
+      'endereco': new FormControl(
         this.aluno.endereco, [
           Validators.required,
           Validators.maxLength(50)
         ]
       ),
-      bairro: new FormControl(
+      'bairro': new FormControl(
         this.aluno.bairro, [
           Validators.required,
           Validators.maxLength(50)
         ]),
-      cpf: new FormControl(
+      'cpf': new FormControl(
         this.aluno.cpf, [
           Validators.required,
-          Validators.maxLength(11)
+          Validators.pattern('^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$')
         ]),
-      telefone: new FormControl(
+      'telefone': new FormControl(
         this.aluno.tel, [
           Validators.required,
-          Validators.maxLength(10)
+          Validators.pattern('^[(][0-9]{2}[)] [0-9]{4}\-[0-9]{4}$')
         ]),
-      celular: new FormControl(
+      'celular': new FormControl(
         this.aluno.cel, [
           Validators.required,
-          Validators.maxLength(11)
-        ])
+          Validators.pattern('^[(][0-9]{2}[)] [9]{0,1}[0-9]{4}\-[0-9]{4}$')
+        ]),
+      'datasGroup': new FormGroup({
+        'dtEntrada': new FormControl(
+          this.aluno.dataEnt, [
+            Validators.required
+          ]
+        ),
+        'dtVencimento': new FormControl(
+          this.aluno.dataVenc, [
+            Validators.required
+          ]
+        )
+      }, Validators.compose([this.validateData()]))
     });
+  }
+
+  get datasGroup() {
+    return this.alunoForm.get('datasGroup');
+  }
+
+  get cpf() {
+    return this.alunoForm.get('cpf')
+  }
+
+  get celular() {
+    return this.alunoForm.get('celular')
+  }
+
+  get telefone() {
+    return this.alunoForm.get('telefone')
+  }
+
+  validateData(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+
+      const isValid = moment(this.aluno.dataVenc).isAfter(moment(this.aluno.dataEnt));
+      return isValid ? null : { 'dataInvalida': 'Data de vencimento deve ser posterior a de entrada' }
+
+    };
   }
 }

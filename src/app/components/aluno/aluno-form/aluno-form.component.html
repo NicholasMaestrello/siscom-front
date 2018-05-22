@@ -10,7 +10,8 @@
       </div>
       <div class="col-md-6" >
         <label for="exampleInputEmail1">CPF</label>
-        <input class="form-control" id="alunoCPF" type="text" name="cpf" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. 44455588800" maxlength="11">
+        <input class="form-control" id="alunoCPF" type="text" name="cpf" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. 44455588800">
+        <span>{{cpf?.valid}}</span>
       </div>
     </div>
   </div>
@@ -30,11 +31,13 @@
     <div class="form-row">
       <div class="col-md-6" >
         <label for="exampleInputEmail1">Telefone</label>
-        <input class="form-control" id="alunoTel" type="text" name="telefone" formControlName="telefone" [(ngModel)]="aluno.tel" maxlength="10" placeholder="EX: 1188882222">
+        <input class="form-control" id="alunoTel" type="text" name="telefone" formControlName="telefone" [(ngModel)]="aluno.tel" placeholder="EX: 1188882222">
+        <span>{{telefone.valid}}</span>
       </div>
       <div class="col-md-6" >
         <label for="exampleInputEmail1">Celular</label>
-        <input class="form-control" id="alunoTel" type="text" name="celular" formControlName="celular" [(ngModel)]="aluno.cel" maxlength="11" placeholder="EX: 11955552222">
+        <input class="form-control" id="alunoTel" type="text" name="celular" formControlName="celular" [(ngModel)]="aluno.cel" placeholder="EX: 11955552222">
+        <span>{{celular.valid}}</span>
       </div>
     </div>
   </div>
@@ -47,15 +50,15 @@
     </div>
 
   </div>
-  <div class="form-group">
+  <div class="form-group"  formGroupName="datasGroup">
     <div class="form-row">
       <div class="col-md-6">
         <label for="exampleInputEmail1">Data Entrada</label>
-        <input class="form-control" id="alunoDataEntrada" type="date" name="entrada" [ngModelOptions]="{standalone: true}" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
+        <input class="form-control" id="alunoDataEntrada" type="date" name="entrada" formControlName="dtEntrada" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
       </div>
       <div class="col-md-6">
         <label for="exampleInputEmail1">Data Vencimento</label>
-        <input class="form-control" id="alunoDataVencimento" type="date" name="vencimento" [ngModelOptions]="{standalone: true}" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
+        <input class="form-control" id="alunoDataVencimento" type="date" name="vencimento" formControlName="dtVencimento" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
       </div>
     </div>
   </div>
@@ -69,6 +72,8 @@
       </div>
     </div>
   </div>
+  <button type="button" (click)="mostra()">Mostra ae</button>
   <span>Status do form</span>
-  {{formularioStatus}}
+  {{formularioStatus}} <br/>
+  {{datasGroup?.errors?.dataInvalida}}
 </form>
