@@ -9,15 +9,15 @@ export class FilterRequisitionService implements HttpInterceptor {
 
   // TODO ver essa porra
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //   if (req.url != 'http://localhost:8020/login') {
+      if (req.url != 'http://localhost:8020/login') {
 
-    //     const changedReq = req.clone(
-    //       { headers: req.headers.set('x-token', localStorage.getItem('user')}
-    //     );
-    //     return next.handle(changedReq);
-    //   }
-    //   return next.handle(req);
-    // }
-    return next.handle(req);
+        const changedReq = req.clone(
+          { headers: req.headers.set('authorization', localStorage.getItem('user')}
+        );
+        return next.handle(changedReq);
+      }
+      return next.handle(req);
+    }
+    // return next.handle(req);
   }
 }
