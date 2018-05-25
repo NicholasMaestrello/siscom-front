@@ -13,9 +13,10 @@ export class FilterRequisitionService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url != 'http://localhost:8020/login') {
 
-      const changedReq = req.clone(
-        { headers: req.headers.set('authorization', localStorage.getItem('user')}
-      );
+      const headers = new HttpHeaders({
+        'authorization': localStorage.getItem('user'),
+      });
+      const changedReq = req.clone({headers});
       return next.handle(changedReq).do((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
         }
