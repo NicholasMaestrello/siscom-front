@@ -15,19 +15,21 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthFilterService],
+    runGuardsAndResolvers: 'always',
     children:
       [
         { path: 'home', component: HomeComponent },
         { path: 'aluno', component: AlunoComponent }
       ]
   },
-  { path: 'notfound', canActivate: [AuthFilterService], component: NotFoundComponent },
-  { path: '', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full' },
-  { path: '**', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full' }
+  { path: 'notfound', canActivate: [AuthFilterService], component: NotFoundComponent, runGuardsAndResolvers: 'always' },
+  { path: '', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full', runGuardsAndResolvers: 'always' },
+  { path: '**', canActivate: [AuthFilterService], redirectTo: '/notfound', pathMatch: 'full', runGuardsAndResolvers: 'always' }
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 

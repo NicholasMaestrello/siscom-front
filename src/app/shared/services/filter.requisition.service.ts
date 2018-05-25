@@ -11,7 +11,8 @@ export class FilterRequisitionService implements HttpInterceptor {
 
   // TODO ver essa porra
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url != 'http://localhost:8020/login') {
+
+    if (req.url.includes('login')) {
 
       const headers = new HttpHeaders({
         'authorization': localStorage.getItem('user'),
