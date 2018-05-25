@@ -31,7 +31,7 @@ export class AlunoFormComponent implements OnInit {
         this.cursos = data;
         this.checkCursosMAtriculados();
       },
-      error => console.log(error)
+      error => window.alert(error)
     )
   }
 
@@ -44,11 +44,11 @@ export class AlunoFormComponent implements OnInit {
     if (this.aluno.id && this.aluno.id > 0) {
       this.http.put('http://localhost:8020/api/aluno', this.aluno).subscribe(
         res => {
-          console.log(res);
+          window.alert('Matricula alterada com sucesso !');
           this.onCancelar.emit(true);
         },
         err => {
-          console.log(err);
+          window.alert(err);
           this.onCancelar.emit(true);
         }
       );
@@ -56,11 +56,11 @@ export class AlunoFormComponent implements OnInit {
     else
       this.alunoService.postAluno(this.aluno).subscribe(
         res => {
-          console.log(res);
+          window.alert('Aluno matriculado com sucesso !');
           this.onCancelar.emit(true);
         },
         err => {
-          console.log(err);
+          window.alert(err);
           this.onCancelar.emit(true);
         }
       );

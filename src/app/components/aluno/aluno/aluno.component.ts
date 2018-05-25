@@ -27,7 +27,7 @@ export class AlunoComponent implements OnInit {
   getAlunos() {
     this.getUrl().subscribe(
       data => this.listaAlunos = data,
-      err => console.log(err)
+      err => window.alert(err)
     )
   }
 
@@ -36,7 +36,6 @@ export class AlunoComponent implements OnInit {
   }
 
   onEditAluno(aluno: AlunoDTO) {
-    console.log(aluno);
     this.aluno = aluno;
     this.form = true;
   }
@@ -54,14 +53,13 @@ export class AlunoComponent implements OnInit {
 
   onExcluirAluno(aluno: AlunoDTO) {
     const result = window.confirm("Deseja mesmo excluir esse aluno ?");
-    console.log(result);
     if (result)
       this.alunoService.deleteAluno(aluno.id).subscribe(
         res => {
-          console.log(res);
+          window.alert('Sucesso !');
           this.getAlunos();
         },
-        err => console.log(err)
+        err => window.alert(err.error)
       )
   }
 
