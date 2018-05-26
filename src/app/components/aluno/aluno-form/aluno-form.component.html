@@ -1,46 +1,46 @@
 <h3 class="titulo-center">
-  Formulario
+  Formulário
 </h3>
 <form [formGroup]="alunoForm">
   <div class="form-group">
     <div class="form-row" >
       <div class="col-md-6" >
-        <label for="exampleInputName">Nome</label>
-        <input class="form-control" id="nomeAluno" formControlName="nome" type="text" aria-describedby="nameHelp" maxlength="50" [(ngModel)]="aluno.nome" placeholder="Nome do Aluno">
-        <span *ngIf="nome.dirty && nome.invalid">Informe um nome</span>
+        <label [class.invalid-label]="nome.dirty && nome.invalid" for="exampleInputName">Nome</label>
+        <input class="form-control" id="nomeAluno" formControlName="nome" [class.invalid-input]="nome.dirty && nome.invalid" type="text" aria-describedby="nameHelp" maxlength="50" [(ngModel)]="aluno.nome" placeholder="Nome do Aluno">
+        <span class="invalid-input" *ngIf="nome.dirty && nome.invalid">Informe um nome</span>
       </div>
       <div class="col-md-6" >
-        <label for="exampleInputEmail1">CPF</label>
-        <input class="form-control" id="alunoCPF" type="text" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. xxx.xxx.xxx-xx">
-        <span *ngIf="cpf.dirty && cpf.invalid">Informe um CPF no formato : xxx.xxx.xxx-xx</span>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-row">
-      <div class="col-md-6" >
-        <label for="exampleInputLastName">Endereço</label>
-        <input class="form-control" id="alunoEndereco" type="text" formControlName="endereco" [(ngModel)]="aluno.endereco" maxlength="50" placeholder="Endereço do aluno">
-        <span *ngIf="endereco.dirty && endereco.invalid">Informe um endereço</span>
-      </div>
-      <div class="col-md-6" >
-        <label for="exampleInputEmail1">Bairro</label>
-        <input class="form-control" id="alunoBairro" type="text" formControlName="bairro" [(ngModel)]="aluno.bairro" maxlength="50" placeholder="Bairro do Aluno">
-        <span *ngIf="bairro.dirty && bairro.invalid">Informe um bairro</span>
+        <label [class.invalid-label]="cpf.dirty && cpf.invalid" for="exampleInputEmail1">CPF</label>
+        <input class="form-control" id="alunoCPF" type="text" [class.invalid-input]="cpf.dirty && cpf.invalid" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. xxx.xxx.xxx-xx">
+        <span class="invalid-input" *ngIf="cpf.dirty && cpf.invalid">Informe um CPF no formato : xxx.xxx.xxx-xx</span>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="form-row">
       <div class="col-md-6" >
-        <label for="exampleInputEmail1">Telefone</label>
-        <input class="form-control" id="alunoTel" type="text"  formControlName="telefone" [(ngModel)]="aluno.tel" placeholder="EX: (xx) xxxx-xxxx">
-        <span *ngIf="telefone.dirty && telefone.invalid">Informe um telefone no formato : (xx) xxxx-xxxx</span>
+        <label [class.invalid-label]="endereco.dirty && endereco.invalid" for="exampleInputLastName">Endereço</label>
+        <input class="form-control" id="alunoEndereco" type="text" [class.invalid-input]="endereco.dirty && endereco.invalid" formControlName="endereco" [(ngModel)]="aluno.endereco" maxlength="50" placeholder="Endereço do aluno">
+        <span class="invalid-input" *ngIf="endereco.dirty && endereco.invalid">Informe um endereço</span>
       </div>
       <div class="col-md-6" >
-        <label for="exampleInputEmail1">Celular</label>
-        <input class="form-control" id="alunoTel" type="text"  formControlName="celular" [(ngModel)]="aluno.cel" placeholder="EX: (xx) xxxxx-xxxx">
-        <span *ngIf="celular.dirty && celular.invalid">Informe um celular no formato : (xx) xxxxx-xxxx</span>
+        <label [class.invalid-label]="bairro.dirty && bairro.invalid" for="exampleInputEmail1">Bairro</label>
+        <input class="form-control" id="alunoBairro" type="text" [class.invalid-input]="bairro.dirty && bairro.invalid" formControlName="bairro" [(ngModel)]="aluno.bairro" maxlength="50" placeholder="Bairro do Aluno">
+        <span class="invalid-input" *ngIf="bairro.dirty && bairro.invalid">Informe um bairro</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-6" >
+        <label [class.invalid-label]="telefone.dirty && telefone.invalid" for="exampleInputEmail1">Telefone</label>
+        <input class="form-control" id="alunoTel" type="text" [class.invalid-input]="telefone.dirty && telefone.invalid"  formControlName="telefone" [(ngModel)]="aluno.tel" placeholder="EX: (xx) xxxx-xxxx">
+        <span class="invalid-input" *ngIf="telefone.dirty && telefone.invalid">Informe um telefone no formato : (xx) xxxx-xxxx</span>
+      </div>
+      <div class="col-md-6" >
+        <label [class.invalid-label]="celular.dirty && celular.invalid" for="exampleInputEmail1">Celular</label>
+        <input class="form-control" id="alunoTel" type="text" [class.invalid-input]="celular.dirty && celular.invalid"  formControlName="celular" [(ngModel)]="aluno.cel" placeholder="EX: (xx) xxxxx-xxxx">
+        <span class="invalid-input" *ngIf="celular.dirty && celular.invalid">Informe um celular no formato : (xx) xxxxx-xxxx</span>
       </div>
     </div>
   </div>
@@ -56,22 +56,22 @@
   <div class="form-group"  formGroupName="datasGroup">
     <div class="form-row">
       <div class="col-md-6">
-        <label for="exampleInputEmail1">Data Entrada</label>
-        <input class="form-control" id="alunoDataEntrada" type="date" formControlName="dtEntrada" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
-        <span *ngIf="dtEntrada.dirty && dtEntrada.invalid">Informe uma data de entrada</span>
+        <label [class.invalid-label]="dtEntrada.dirty && dtEntrada.invalid" for="exampleInputEmail1">Data de Matrícula</label>
+        <input class="form-control" id="alunoDataEntrada" type="date" [class.invalid-input]="dtEntrada.dirty && dtEntrada.invalid" formControlName="dtEntrada" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
+        <span class="invalid-input" *ngIf="dtEntrada.dirty && dtEntrada.invalid">Informe uma data de matrícula</span>
       </div>
       <div class="col-md-6">
-        <label for="exampleInputEmail1">Data Vencimento</label>
-        <input class="form-control" id="alunoDataVencimento" type="date" formControlName="dtVencimento" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
-        <span *ngIf="dtVencimento.dirty && dtVencimento.invalid">Informe uma data de vencimento</span>
-        <span *ngIf="dtVencimento.dirty && datasGroup.invalid">{{datasGroup?.errors?.dataInvalida}}</span>
+        <label [class.invalid-label]="(dtVencimento.dirty && dtVencimento.invalid) || (dtVencimento.dirty && datasGroup.invalid)" for="exampleInputEmail1">Data de Vencimento</label>
+        <input class="form-control" id="alunoDataVencimento" type="date" [class.invalid-input]="(dtVencimento.dirty && dtVencimento.invalid) || (dtVencimento.dirty && datasGroup.invalid)" formControlName="dtVencimento" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
+        <span class="invalid-input" *ngIf="dtVencimento.dirty && dtVencimento.invalid">Informe uma data de vencimento</span>
+        <span class="invalid-input" *ngIf="dtVencimento.dirty && datasGroup.invalid">{{datasGroup?.errors?.dataInvalida}}</span>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="form-row">
       <div class="col-md-6">
-        <button type="button" class="btn btn-primary" [disabled]="alunoForm.invalid" (click)="save()">Salvar</button>
+        <button type="button" class="btn btn-primary" [class.invalid-submit]="alunoForm.invalid" [disabled]="alunoForm.invalid" (click)="save()">Salvar</button>
       </div>
       <div class="col-md-6">
         <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>

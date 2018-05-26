@@ -31,7 +31,12 @@ export class AlunoFormComponent implements OnInit {
         this.cursos = data;
         this.checkCursosMAtriculados();
       },
-      error => window.alert(error)
+      err => {
+        if (err.status == 401)
+          window.alert("Unauthorized")
+        else
+          window.alert("Erro inesperado no servidor")
+      }
     )
   }
 
@@ -48,7 +53,10 @@ export class AlunoFormComponent implements OnInit {
           this.onCancelar.emit(true);
         },
         err => {
-          window.alert(err);
+          if (err.status == 401)
+            window.alert("Unauthorized")
+          else
+            window.alert("Erro inesperado no servidor")
           this.onCancelar.emit(true);
         }
       );
@@ -60,7 +68,10 @@ export class AlunoFormComponent implements OnInit {
           this.onCancelar.emit(true);
         },
         err => {
-          window.alert(err);
+          if (err.status == 401)
+            window.alert("Unauthorized")
+          else
+            window.alert("Erro inesperado no servidor")
           this.onCancelar.emit(true);
         }
       );
@@ -182,7 +193,7 @@ export class AlunoFormComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: any } => {
 
       const isValid = moment(this.aluno.dataVenc).isAfter(moment(this.aluno.dataEnt));
-      return isValid ? null : { 'dataInvalida': 'Data de vencimento deve ser posterior a de entrada' }
+      return isValid ? null : { 'dataInvalida': 'Data de vencimento deve ser posterior a de matrícula' }
 
     };
   }

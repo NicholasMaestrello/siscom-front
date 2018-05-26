@@ -27,7 +27,12 @@ export class AlunoComponent implements OnInit {
   getAlunos() {
     this.getUrl().subscribe(
       data => this.listaAlunos = data,
-      err => window.alert(err)
+      err => {
+        if (err.status == 401)
+          window.alert("Unauthorized")
+        else
+          window.alert("Erro inesperado no servidor")
+      }
     )
   }
 
@@ -59,7 +64,12 @@ export class AlunoComponent implements OnInit {
           window.alert('Aluno excluido com sucesso !');
           this.getAlunos();
         },
-        err => window.alert(err.error)
+        err => {
+          if (err.status == 401)
+            window.alert("Unauthorized")
+          else
+            window.alert("Erro inesperado no servidor")
+        }
       )
   }
 
