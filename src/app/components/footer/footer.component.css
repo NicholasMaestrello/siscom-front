@@ -1,3 +1,8 @@
 .largura-full {
     width: 100%;
 }
+
+.black-footer {
+    color: white;
+    background-color: #212529;
+}

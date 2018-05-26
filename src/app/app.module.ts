@@ -25,6 +25,10 @@ import { AuthFilterService } from './shared/services/authfilter.service';
 import { FilterRequisitionService } from './shared/services/filter.requisition.service';
 import { ModalComponent } from './shared/component/modal/modal.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +51,9 @@ import { ModalComponent } from './shared/component/modal/modal.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    TableModule,
+    BrowserAnimationsModule,
+    PaginatorModule,
     NgbModule.forRoot()
   ],
   providers: [HttpService,

@@ -1,7 +1,7 @@
-nav {
-    background-color: #e3f2fd;
+.my-color {
+    background-color: rgb(170, 93, 115);
 }
 
 .active-link {
-    background-color: aquamarine;
+    background-color: red;
 }

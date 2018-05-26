@@ -1,7 +1,13 @@
 <div class="card-body">
-  <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
+    <p-table #dt [columns]="cols" [value]="alunos" id="dataTable" width="100%" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20,30]" [scrollable]="true" scrollHeight="400px">
+      <ng-template pTemplate="caption">
+        <div style="text-align: right">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input type="text" pInputText size="50" placeholder="Procurar Aluno" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            style="width:auto">
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
         <tr>
           <th>ID</th>
           <th>Nome</th>
@@ -11,26 +17,65 @@
           <th>Vencimento</th>
           <th>Opções</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let aluno of alunos">
-            <td>{{aluno.id}}</td>
-          <td>{{aluno.nome}}</td>
-          <td>{{aluno.cpf}}</td>
-          <td>{{aluno.tel}}</td>
-          <td>{{aluno.dataEnt | date: 'dd/MM/yyyy'}}</td>
-          <td>{{aluno.dataVenc | date: 'dd/MM/yyyy'}}</td>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+        <tr>
+          <td>{{rowData.id}}</td>
+          <td>{{rowData.nome}}</td>
+          <td>{{rowData.cpf}}</td>
+          <td>{{rowData.tel}}</td>
+          <td>{{rowData.dataEnt | date: 'dd/MM/yyyy'}}</td>
+          <td>{{rowData.dataVenc | date: 'dd/MM/yyyy'}}</td>
           <td>
 
-            <button type="button" class="btn btn-default" (click)="editAluno(aluno)">
+            <button type="button" class="btn btn-default" (click)="editAluno(rowData)">
               <span class="glyphicon glyphicon-pencil"></span> Editar
             </button>
-            <button type="button" class="btn btn-danger" (click)="excluirAluno(aluno)">
-                <span class="glyphicon glyphicon-trash"></span> Excluir
+            <button type="button" class="btn btn-danger" (click)="excluirAluno(rowData)">
+              <span class="glyphicon glyphicon-trash"></span> Excluir
             </button>
           </td>
         </tr>
-      </tbody>
-    </table>
-  </div>
+      </ng-template>
+    </p-table>
 </div>
+
+
+<!-- 
+<p-table #dt [columns]="cols" [value]="alunos" id="dataTable" width="100%" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="50" placeholder="Procurar Aluno" (input)="dt.filterGlobal($event.target.value, 'contains')"
+        style="width:auto">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+      <th>
+        Opções
+      </th>
+    </tr>
+
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+      <td>
+
+        <button type="button" class="btn btn-default" (click)="editAluno(aluno)">
+          <span class="glyphicon glyphicon-pencil"></span> Editar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="excluirAluno(aluno)">
+          <span class="glyphicon glyphicon-trash"></span> Excluir
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table> -->

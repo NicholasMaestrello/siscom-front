@@ -56,7 +56,7 @@ export class AlunoComponent implements OnInit {
     if (result)
       this.alunoService.deleteAluno(aluno.id).subscribe(
         res => {
-          window.alert('Sucesso !');
+          window.alert('Aluno excluido com sucesso !');
           this.getAlunos();
         },
         err => window.alert(err.error)
