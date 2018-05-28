@@ -7,6 +7,7 @@ import { CursoDTO } from '../../../model/curso.model';
 import { AlunoService } from '../service/aluno.service';
 
 import * as moment from 'moment';
+import { MaskUtils } from '../../../shared/utils/mask-utils';
 
 
 @Component({
@@ -15,13 +16,17 @@ import * as moment from 'moment';
   styleUrls: ['./aluno-form.component.css']
 })
 export class AlunoFormComponent implements OnInit {
-
   @Input() aluno: AlunoDTO;
   @Output() onCancelar = new EventEmitter<boolean>();
+
   cursos: CursoDTO[];
   cursosSelecionados: CursoDTO[];
 
   alunoForm: FormGroup;
+
+  cpfMask = MaskUtils.cpfMask;
+  telefoneMask = MaskUtils.telefoneMask;
+  celularMask = MaskUtils.celularMask;
   constructor(private http: HttpClient, private alunoService: AlunoService) { }
 
   ngOnInit() {

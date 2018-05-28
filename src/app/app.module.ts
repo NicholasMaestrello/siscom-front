@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     BrowserAnimationsModule,
     PaginatorModule,
+    TextMaskModule,
     NgbModule.forRoot()
   ],
   providers: [HttpService,

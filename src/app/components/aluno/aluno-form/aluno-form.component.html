@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-6" >
         <label [class.invalid-label]="cpf.dirty && cpf.invalid" for="exampleInputEmail1">CPF</label>
-        <input class="form-control" id="alunoCPF" type="text" [class.invalid-input]="cpf.dirty && cpf.invalid" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. xxx.xxx.xxx-xx">
+        <input [textMask]="{mask: cpfMask}" class="form-control" id="alunoCPF" type="text" [class.invalid-input]="cpf.dirty && cpf.invalid" formControlName="cpf" [(ngModel)]="aluno.cpf" placeholder="Ex. xxx.xxx.xxx-xx">
         <span class="invalid-input" *ngIf="cpf.dirty && cpf.invalid">Informe um CPF no formato : xxx.xxx.xxx-xx</span>
       </div>
     </div>
@@ -34,12 +34,12 @@
     <div class="form-row">
       <div class="col-md-6" >
         <label [class.invalid-label]="telefone.dirty && telefone.invalid" for="exampleInputEmail1">Telefone</label>
-        <input class="form-control" id="alunoTel" type="text" [class.invalid-input]="telefone.dirty && telefone.invalid"  formControlName="telefone" [(ngModel)]="aluno.tel" placeholder="EX: (xx) xxxx-xxxx">
+        <input [textMask]="{mask: telefoneMask}" class="form-control" id="alunoTel" type="text" [class.invalid-input]="telefone.dirty && telefone.invalid"  formControlName="telefone" [(ngModel)]="aluno.tel" placeholder="EX: (xx) xxxx-xxxx">
         <span class="invalid-input" *ngIf="telefone.dirty && telefone.invalid">Informe um telefone no formato : (xx) xxxx-xxxx</span>
       </div>
       <div class="col-md-6" >
         <label [class.invalid-label]="celular.dirty && celular.invalid" for="exampleInputEmail1">Celular</label>
-        <input class="form-control" id="alunoTel" type="text" [class.invalid-input]="celular.dirty && celular.invalid"  formControlName="celular" [(ngModel)]="aluno.cel" placeholder="EX: (xx) xxxxx-xxxx">
+        <input [textMask]="{mask: celularMask}" class="form-control" id="alunoTel" type="text" [class.invalid-input]="celular.dirty && celular.invalid"  formControlName="celular" [(ngModel)]="aluno.cel" placeholder="EX: (xx) xxxxx-xxxx">
         <span class="invalid-input" *ngIf="celular.dirty && celular.invalid">Informe um celular no formato : (xx) xxxxx-xxxx</span>
       </div>
     </div>
