@@ -6,3 +6,12 @@
     color: white;
     background-color: #212529;
 }
+
+.bottom-position {
+    margin-bottom: 0;
+    height: 50px;
+}
+
+.text-center-height{
+    margin-top: 50%;
+}

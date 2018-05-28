@@ -1,8 +1,18 @@
-#divAlunoComponent {
+.center-page {
     margin-left: 10%;
     margin-right: 10%;
+    margin-top: 50px;
+    margin-bottom: 60px;
 }
 
 .botao-novo {
     margin-left: 3%;
+}
+
+.min-height {
+    min-height: 600px;
+}
+
+.title-center{
+    text-align: center;
 }
