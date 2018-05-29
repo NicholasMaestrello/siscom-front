@@ -4,14 +4,14 @@
 
 .black-footer {
     color: white;
-    background-color: #212529;
+    background-color: #343a40!important;
 }
 
 .bottom-position {
     margin-bottom: 0;
-    height: 50px;
+    height: 80px;
 }
 
-.text-center-height{
-    margin-top: 50%;
+.center {
+    margin-top: 10px;
 }

@@ -5,9 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../../components/login/login.component'
 import { DashboardComponent } from '../../components/dashboard/dashboard.component'
 import { HomeComponent } from '../../components/home/home.component'
-import { AlunoComponent } from '../../components/aluno/aluno/aluno.component';
 import { NotFoundComponent } from '../../shared/component/not-found/not-found.component';
 import { AuthFilterService } from '../../shared/services/authfilter.service';
+import { AlunoComponent } from '../../components/aluno/aluno.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

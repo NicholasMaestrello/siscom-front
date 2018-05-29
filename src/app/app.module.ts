@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './router/app-routing/app-routing.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { AlunoComponent } from './components/aluno/aluno/aluno.component';
 import { AlunoTableComponent } from './components/aluno/aluno-table/aluno-table.component';
 import { AlunoFormComponent } from './components/aluno/aluno-form/aluno-form.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -30,6 +29,8 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import { PageContainerComponent } from './components/page-container/page-container.component';
+import { AlunoComponent } from './components/aluno/aluno.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     DashboardComponent,
     HomeComponent,
     NotFoundComponent,
-    ModalComponent
+    ModalComponent,
+    PageContainerComponent
   ],
   imports: [
     CommonModule,
