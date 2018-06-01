@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './service/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginDTO } from '../../model/login.model';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { DefaultResponse } from '../../model/default-response';
 
 @Component({
@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
   logar() {
     this.loginService.doLogin(this.login).subscribe(
       res => this.loginSucesso(res),
-      err => window.alert(err)
+      err => {
+        window.alert(err.error.message);
+        this.resetObj();
+      }
     );
   }
 
@@ -52,9 +55,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginSucesso(res: DefaultResponse<string>) {
-    if(res.data) {
+    if (res.data) {
       localStorage.setItem('user', res.data);
-    this.router.navigate(['/dashboard/home']);
+      this.router.navigate(['/dashboard/home']);
     }
     else {
       window.alert('Usuario ou senha invalidos !');

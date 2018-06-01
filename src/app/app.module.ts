@@ -27,10 +27,19 @@ import { ModalComponent } from './shared/component/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { TextMaskModule } from 'angular2-text-mask';
 import { PageContainerComponent } from './components/page-container/page-container.component';
 import { AlunoComponent } from './components/aluno/aluno.component';
+import { CursoComponent } from './components/curso/curso.component';
+import { CursoTableComponent } from './components/curso/curso-table/curso-table.component';
+import { CursoFormComponent } from './components/curso/curso-form/curso-form.component';
+import { ModalidadeComponent } from './components/modalidade/modalidade.component';
+import { CursoService } from './components/curso/service/curso-service.service';
+import { ModalidadeService } from './components/modalidade/service/modalidade-service.service';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -45,7 +54,11 @@ import { AlunoComponent } from './components/aluno/aluno.component';
     HomeComponent,
     NotFoundComponent,
     ModalComponent,
-    PageContainerComponent
+    PageContainerComponent,
+    CursoComponent,
+    CursoTableComponent,
+    CursoFormComponent,
+    ModalidadeComponent
   ],
   imports: [
     CommonModule,
@@ -58,12 +71,16 @@ import { AlunoComponent } from './components/aluno/aluno.component';
     BrowserAnimationsModule,
     PaginatorModule,
     TextMaskModule,
+    NgSelectModule,
+    CheckboxModule,
     NgbModule.forRoot()
   ],
   providers: [HttpService,
     LoginService,
     AlunoService,
     AuthFilterService,
+    CursoService,
+    ModalidadeService,
     { provide: HTTP_INTERCEPTORS, useClass: FilterRequisitionService, multi: true }
   ],
   bootstrap: [AppComponent],

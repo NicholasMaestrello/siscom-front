@@ -1,0 +1,37 @@
+<h3 class="titulo-center">
+  Formulário
+</h3>
+<form [formGroup]="cursoForm">
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-4">
+        <label for="responsavelCurso">Nome</label>
+        <input class="form-control" id="responsavelCurso" [class.invalid-input]="responsavel.dirty && responsavel.invalid" type="text"
+          maxlength="50" formControlName="responsavel" [(ngModel)]="curso.responsavel" placeholder="Responsavel pelo curso">
+        <span class="invalid-input" *ngIf="responsavel.dirty && responsavel.invalid">Informe um responsavel</span>
+      </div>
+      <div class="col-md-4">
+        <label for="nivelCurso">Nivel</label>
+        <ng-select id="nivelCurso" [class.invalid-input]="responsavel.dirty && responsavel.invalid" placeholder="Selecione um nível"
+          [items]="niveis" formControlName="nivel" [(ngModel)]="curso.nivel">
+        </ng-select>
+      </div>
+      <div class="col-md-4">
+        <label for="modalidadeCurso">Modalidade</label>
+        <ng-select id="modalidadeCurso" [items]="modalidades" placeholder="Selecione uma modalidade" bindLabel="nome" formControlName="modalidade"
+          [(ngModel)]="curso.modalidade">
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" [class.invalid-submit]="cursoForm.invalid" [disabled]="cursoForm.invalid" (click)="save()">Salvar</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</form>

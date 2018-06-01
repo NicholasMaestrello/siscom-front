@@ -14,15 +14,15 @@ export class AlunoService {
     return this.http.find<AlunoDTO[]>(this.url);
   }
 
-  postAluno(aluno: AlunoDTO): Observable<any> {
-    return this.http.post<any>(this.url, aluno);
+  postAluno(aluno: AlunoDTO): Observable<AlunoDTO> {
+    return this.http.post<AlunoDTO>(this.url, aluno);
+  }
+
+  putAluno(aluno: AlunoDTO): Observable<AlunoDTO> {
+    return this.http.put<AlunoDTO>(this.url, aluno);
   }
 
   deleteAluno(idAluno: number): Observable<any> {
     return this.http.delete<any>(this.url, String(idAluno));
-  }
-
-  getCursos(): Observable<CursoDTO[]>{
-    return this.http.find<CursoDTO[]>('http://localhost:8020/api/curso');
   }
 }

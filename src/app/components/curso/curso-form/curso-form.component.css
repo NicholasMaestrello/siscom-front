@@ -4,15 +4,6 @@
     margin-bottom: 20px;
 }
 
-.invalid-input {
-    color: red;
-    border-color: red;
-}
-
-.invalid-label {
-    color: red;
-}
-
 .invalid-submit {
     background-color: rgb(211,211,211);
 }

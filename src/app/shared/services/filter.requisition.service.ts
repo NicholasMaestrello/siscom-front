@@ -9,14 +9,15 @@ export class FilterRequisitionService implements HttpInterceptor {
 
   constructor(private router: Router) { }
 
-  // TODO ver essa porra
+  // TODO Ver forma de ficar mais simples
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (!req.url.includes('login')) {
       const headers = new HttpHeaders({
         'authorization': localStorage.getItem('user'),
+        'Content-Type': 'application/json; charset=utf-8'
       });
-      const changedReq = req.clone({headers});
+      const changedReq = req.clone({ headers });
       return next.handle(changedReq).do((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
         }

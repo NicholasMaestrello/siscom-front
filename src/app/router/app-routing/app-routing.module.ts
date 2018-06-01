@@ -8,6 +8,8 @@ import { HomeComponent } from '../../components/home/home.component'
 import { NotFoundComponent } from '../../shared/component/not-found/not-found.component';
 import { AuthFilterService } from '../../shared/services/authfilter.service';
 import { AlunoComponent } from '../../components/aluno/aluno.component';
+import { CursoComponent } from '../../components/curso/curso.component';
+import { ModalidadeComponent } from '../../components/modalidade/modalidade.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
     children:
       [
         { path: 'home', component: HomeComponent },
-        { path: 'aluno', component: AlunoComponent }
+        { path: 'aluno', component: AlunoComponent },
+        { path: 'curso', component: CursoComponent },
+        { path: 'modalidade', component: ModalidadeComponent }
       ]
   },
   { path: 'notfound', canActivate: [AuthFilterService], component: NotFoundComponent, runGuardsAndResolvers: 'always' },

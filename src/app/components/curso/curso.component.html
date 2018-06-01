@@ -1,0 +1,15 @@
+<div>
+  <div class="title-center">
+      <h1>Cursos</h1>
+  </div>
+  <div class="row">
+      <button *ngIf="!showForm" type="button" class="col-md-2 btn btn-primary botao-novo" (click)="novoCurso()">
+          <span class="glyphicon glyphicon-plus"></span> Novo
+      </button>
+  </div>
+  <app-curso-form *ngIf="showForm" [curso]="cursoSelected" (onCancelar)="onCancelar($event)"></app-curso-form>
+  <app-curso-table *ngIf="!showForm" (onEditCurso)="onEditCurso($event)"></app-curso-table>
+  <!-- <app-aluno-table *ngIf="!form" (onEditAluno)="onEditAluno($event)" (onExcluirAluno)="onExcluirAluno($event)" [alunos]="listaAlunos"></app-aluno-table>
+  <app-aluno-form *ngIf="form" [aluno]="aluno" (onCancelar)="onCancelar($event)"></app-aluno-form> -->
+
+</div>

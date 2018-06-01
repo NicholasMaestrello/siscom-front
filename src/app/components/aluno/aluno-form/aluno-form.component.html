@@ -47,9 +47,9 @@
   <div class="form-group">
     <label>Cursos</label>
     <div  class="col-md-3">
-        <label *ngFor="let curso of cursos">
+        <div class="checkbox-input" *ngFor="let curso of cursos">
           <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">{{curso?.modalidade?.nome}} - {{curso?.nivel}}
-        </label>
+        </div>
     </div>
 
   </div>

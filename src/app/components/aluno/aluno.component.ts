@@ -66,7 +66,7 @@ export class AlunoComponent implements OnInit {
           if (err.status == 401)
             window.alert("Unauthorized")
           else
-            window.alert("Erro inesperado no servidor")
+            window.alert("Erro inesperado no servidor : " + err)
         }
       )
   }
