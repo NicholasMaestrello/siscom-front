@@ -1,7 +1,7 @@
 import { CursoDTO } from "./curso.model";
 
-export class AlunoDTO{
-    id: number;
+export class AlunoDTO {
+	id: number;
 	nome: String;
 	endereco: String;
 	cpf: String;

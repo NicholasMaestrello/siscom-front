@@ -63,12 +63,25 @@ export class ModalidadeComponent implements OnInit {
         this.getModalidades();
         this.modalidade.nome = "";
       },
-      err => window.alert(err.error)
+      err => {
+        if (err.status != 401)
+          window.alert("Erro inesperado no servidor")
+      }
     );
   }
 
   alterararModalidade() {
-    this.modalidadeService.alterarModalidade(this.modalidade);
+    this.modalidadeService.alterarModalidade(this.modalidade).subscribe(
+      res => {
+        window.alert('Modalidade alterada com sucesso');
+        this.getModalidades();
+        this.modalidade.nome = "";
+      }
+      err => {
+        if (err.status != 401)
+          window.alert("Erro inesperado no servidor")
+      }
+    );
   }
 
   excluirModalidade(modalidade: ModalidadeDTO) {
@@ -79,7 +92,10 @@ export class ModalidadeComponent implements OnInit {
           window.alert('Modalidade Excluida Com sucesso !');
           this.getModalidades();
         },
-        err => window.alert(err.error.message)
+        err => {
+          if (err.status != 401)
+            window.alert("Erro inesperado no servidor")
+        }
       )
   }
 

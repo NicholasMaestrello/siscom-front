@@ -48,10 +48,8 @@ export class CursoTableComponent implements OnInit {
           this.getCursos()
         },
         err => {
-          if (err.status == 401)
-            window.alert("Unauthorized")
-          else
-            window.alert("Erro inesperado no servidor : " + err)
+          if (err.status != 401)
+          window.alert("Erro inesperado no servidor")
         }
       )
   }

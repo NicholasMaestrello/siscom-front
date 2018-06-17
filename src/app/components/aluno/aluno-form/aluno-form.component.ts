@@ -31,6 +31,7 @@ export class AlunoFormComponent implements OnInit {
   constructor(private alunoService: AlunoService, private cursoService: CursoService) { }
 
   ngOnInit() {
+    console.log(this.aluno.dataEnt);
     this.createForm();
     this.getCursos().subscribe(
       data => {
@@ -38,9 +39,7 @@ export class AlunoFormComponent implements OnInit {
         this.checkCursosMAtriculados();
       },
       err => {
-        if (err.status == 401)
-          window.alert("Unauthorized")
-        else
+        if (err.status != 401)
           window.alert("Erro inesperado no servidor")
       }
     )
@@ -65,9 +64,7 @@ export class AlunoFormComponent implements OnInit {
         this.onCancelar.emit(true);
       },
       err => {
-        if (err.status == 401)
-          window.alert("Unauthorized")
-        else
+        if (err.status != 401)
           window.alert("Erro inesperado no servidor")
         this.onCancelar.emit(true);
       }
@@ -81,9 +78,7 @@ export class AlunoFormComponent implements OnInit {
         this.onCancelar.emit(true);
       },
       err => {
-        if (err.status == 401)
-          window.alert("Unauthorized")
-        else
+        if (err.status != 401)
           window.alert("Erro inesperado no servidor")
         this.onCancelar.emit(true);
       }
@@ -150,7 +145,7 @@ export class AlunoFormComponent implements OnInit {
         ]),
       'datasGroup': new FormGroup({
         'dtEntrada': new FormControl(
-          { value: this.aluno.dataEnt, disabled: this.aluno.id ? true : false },
+          { value: this.aluno.dataEnt, disabled: true },
           [
             Validators.required
           ]
@@ -160,7 +155,7 @@ export class AlunoFormComponent implements OnInit {
             Validators.required
           ]
         )
-      }, Validators.compose([this.validateData()]))
+      }, Validators.compose([this.validateDataVenc()]))
     });
   }
 
@@ -169,27 +164,27 @@ export class AlunoFormComponent implements OnInit {
   }
 
   get nome() {
-    return this.alunoForm.get('nome')
+    return this.alunoForm.get('nome');
   }
 
   get endereco() {
-    return this.alunoForm.get('endereco')
+    return this.alunoForm.get('endereco');
   }
 
   get bairro() {
-    return this.alunoForm.get('bairro')
+    return this.alunoForm.get('bairro');
   }
 
   get cpf() {
-    return this.alunoForm.get('cpf')
+    return this.alunoForm.get('cpf');
   }
 
   get telefone() {
-    return this.alunoForm.get('telefone')
+    return this.alunoForm.get('telefone');
   }
 
   get celular() {
-    return this.alunoForm.get('celular')
+    return this.alunoForm.get('celular');
   }
 
   get dtEntrada() {
@@ -202,11 +197,11 @@ export class AlunoFormComponent implements OnInit {
     return group ? group.get('dtVencimento') : null;
   }
 
-  validateData(): ValidatorFn {
+  validateDataVenc(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
 
       const isValid = moment(this.aluno.dataVenc).isAfter(moment(this.aluno.dataEnt));
-      return isValid ? null : { 'dataInvalida': 'Data de vencimento deve ser posterior a de matrícula' }
+      return isValid ? null : { 'dataVencInvalida': 'Data de vencimento deve ser posterior a de matrícula' };
 
     };
   }

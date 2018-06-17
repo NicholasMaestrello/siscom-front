@@ -24,7 +24,7 @@ export class FilterRequisitionService implements HttpInterceptor {
       }, (err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            // window.alert('Unauthorized');
+            window.alert('Sessão expirada');
             localStorage.removeItem('user');
             this.router.navigate(['/login']);
           }

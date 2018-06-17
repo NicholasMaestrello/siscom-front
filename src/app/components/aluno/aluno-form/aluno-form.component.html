@@ -48,7 +48,8 @@
     <label>Cursos</label>
     <div  class="col-md-3">
         <div class="checkbox-input" *ngFor="let curso of cursos">
-          <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">{{curso?.modalidade?.nome}} - {{curso?.nivel}}
+          <input [(ngModel)]="curso.checked" [ngModelOptions]="{standalone: true}" type="checkbox" value="curso">
+          <label for="{curso}">{{curso?.modalidade?.nome}} - {{curso?.nivel}}</label>
         </div>
     </div>
 
@@ -56,15 +57,16 @@
   <div class="form-group"  formGroupName="datasGroup">
     <div class="form-row">
       <div class="col-md-6">
-        <label [class.invalid-label]="dtEntrada.dirty && dtEntrada.invalid" for="exampleInputEmail1">Data de Matrícula</label>
+        <label [class.invalid-label]="dtEntrada.dirty && dtEntrada.invalid" for="exampleInputEmail1">Data de Entrada</label>
         <input class="form-control" id="alunoDataEntrada" type="date" [class.invalid-input]="dtEntrada.dirty && dtEntrada.invalid" formControlName="dtEntrada" [(ngModel)]="aluno.dataEnt" placeholder="data entrada">
-        <span class="invalid-input" *ngIf="dtEntrada.dirty && dtEntrada.invalid">Informe uma data de matrícula</span>
+        <span class="invalid-input" *ngIf="dtEntrada.dirty && dtEntrada.invalid.required">Informe uma data de matrícula</span>
+        <span class="invalid-input" *ngIf="dtEntrada.dirty && dtEntrada.invalid">{{datasGroup?.errors?.dataEntInvalida}}</span>
       </div>
       <div class="col-md-6">
         <label [class.invalid-label]="(dtVencimento.dirty && dtVencimento.invalid) || (dtVencimento.dirty && datasGroup.invalid)" for="exampleInputEmail1">Data de Vencimento</label>
         <input class="form-control" id="alunoDataVencimento" type="date" [class.invalid-input]="(dtVencimento.dirty && dtVencimento.invalid) || (dtVencimento.dirty && datasGroup.invalid)" formControlName="dtVencimento" [(ngModel)]="aluno.dataVenc" placeholder="data vencimento">
         <span class="invalid-input" *ngIf="dtVencimento.dirty && dtVencimento.invalid">Informe uma data de vencimento</span>
-        <span class="invalid-input" *ngIf="dtVencimento.dirty && datasGroup.invalid">{{datasGroup?.errors?.dataInvalida}}</span>
+        <span class="invalid-input" *ngIf="dtVencimento.dirty && datasGroup.invalid">{{datasGroup?.errors?.dataVencInvalida}}</span>
       </div>
     </div>
   </div>
@@ -76,6 +78,9 @@
       <div class="col-md-6">
         <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
       </div>
+    </div>
+    <div class="row">
+      <span>Todos os campos são obrigatorios</span>
     </div>
   </div>
 </form>

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { AlunoDTO } from '../../model/aluno.model';
 import { AlunoService } from './service/aluno.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-aluno',
   templateUrl: './aluno.component.html',
@@ -26,9 +28,9 @@ export class AlunoComponent implements OnInit {
     this.getUrl().subscribe(
       data => this.listaAlunos = data,
       err => {
-        if (err.status == 401)
-          window.alert("Unauthorized")
-        else
+        
+        console.log(err)
+        if (err.status != 401)
           window.alert("Erro inesperado no servidor")
       }
     )
@@ -45,6 +47,7 @@ export class AlunoComponent implements OnInit {
 
   newAluno() {
     this.aluno = new AlunoDTO();
+    this.aluno.dataEnt = moment(new Date()).format('YYYY-MM-DD');
     this.form = true;
   }
 
@@ -63,10 +66,8 @@ export class AlunoComponent implements OnInit {
           this.getAlunos();
         },
         err => {
-          if (err.status == 401)
-            window.alert("Unauthorized")
-          else
-            window.alert("Erro inesperado no servidor : " + err)
+          if (err.status != 401)
+            window.alert("Erro inesperado no servidor")
         }
       )
   }
