@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './router/app-routing/app-routing.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { AlunoComponent } from './components/aluno/aluno/aluno.component';
 import { AlunoTableComponent } from './components/aluno/aluno-table/aluno-table.component';
 import { AlunoFormComponent } from './components/aluno/aluno-form/aluno-form.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -28,8 +27,19 @@ import { ModalComponent } from './shared/component/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import { PageContainerComponent } from './components/page-container/page-container.component';
+import { AlunoComponent } from './components/aluno/aluno.component';
+import { CursoComponent } from './components/curso/curso.component';
+import { CursoTableComponent } from './components/curso/curso-table/curso-table.component';
+import { CursoFormComponent } from './components/curso/curso-form/curso-form.component';
+import { ModalidadeComponent } from './components/modalidade/modalidade.component';
+import { CursoService } from './components/curso/service/curso-service.service';
+import { ModalidadeService } from './components/modalidade/service/modalidade-service.service';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -43,7 +53,12 @@ import { TextMaskModule } from 'angular2-text-mask';
     DashboardComponent,
     HomeComponent,
     NotFoundComponent,
-    ModalComponent
+    ModalComponent,
+    PageContainerComponent,
+    CursoComponent,
+    CursoTableComponent,
+    CursoFormComponent,
+    ModalidadeComponent
   ],
   imports: [
     CommonModule,
@@ -56,12 +71,16 @@ import { TextMaskModule } from 'angular2-text-mask';
     BrowserAnimationsModule,
     PaginatorModule,
     TextMaskModule,
+    NgSelectModule,
+    CheckboxModule,
     NgbModule.forRoot()
   ],
   providers: [HttpService,
     LoginService,
     AlunoService,
     AuthFilterService,
+    CursoService,
+    ModalidadeService,
     { provide: HTTP_INTERCEPTORS, useClass: FilterRequisitionService, multi: true }
   ],
   bootstrap: [AppComponent],

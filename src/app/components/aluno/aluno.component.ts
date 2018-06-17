@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { AlunoDTO } from '../../../model/aluno.model'
-import { AlunoTableComponent } from '../aluno-table/aluno-table.component';
 import { HttpClient } from '@angular/common/http';
-import { AlunoService } from '../service/aluno.service';
+import { AlunoDTO } from '../../model/aluno.model';
+import { AlunoService } from './service/aluno.service';
 
 @Component({
   selector: 'app-aluno',
@@ -68,7 +66,7 @@ export class AlunoComponent implements OnInit {
           if (err.status == 401)
             window.alert("Unauthorized")
           else
-            window.alert("Erro inesperado no servidor")
+            window.alert("Erro inesperado no servidor : " + err)
         }
       )
   }

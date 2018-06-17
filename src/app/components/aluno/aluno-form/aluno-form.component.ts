@@ -8,6 +8,7 @@ import { AlunoService } from '../service/aluno.service';
 
 import * as moment from 'moment';
 import { MaskUtils } from '../../../shared/utils/mask-utils';
+import { CursoService } from '../../curso/service/curso-service.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class AlunoFormComponent implements OnInit {
   cpfMask = MaskUtils.cpfMask;
   telefoneMask = MaskUtils.telefoneMask;
   celularMask = MaskUtils.celularMask;
-  constructor(private http: HttpClient, private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService, private cursoService: CursoService) { }
 
   ngOnInit() {
     this.createForm();
@@ -46,40 +47,47 @@ export class AlunoFormComponent implements OnInit {
   }
 
   getCursos() {
-    return this.http.get<CursoDTO[]>('http://localhost:8020/api/curso');
+    return this.cursoService.getCursos();
   }
 
   save() {
     this.aluno.cursos = this.selecionarCursos();
-    if (this.aluno.id && this.aluno.id > 0) {
-      this.http.put('http://localhost:8020/api/aluno', this.aluno).subscribe(
-        res => {
-          window.alert('Matricula alterada com sucesso !');
-          this.onCancelar.emit(true);
-        },
-        err => {
-          if (err.status == 401)
-            window.alert("Unauthorized")
-          else
-            window.alert("Erro inesperado no servidor")
-          this.onCancelar.emit(true);
-        }
-      );
-    }
+    if (this.aluno.id && this.aluno.id > 0)
+      this.alterarAluno();
     else
-      this.alunoService.postAluno(this.aluno).subscribe(
-        res => {
-          window.alert('Aluno matriculado com sucesso !');
-          this.onCancelar.emit(true);
-        },
-        err => {
-          if (err.status == 401)
-            window.alert("Unauthorized")
-          else
-            window.alert("Erro inesperado no servidor")
-          this.onCancelar.emit(true);
-        }
-      );
+      this.incluirAluno();
+  }
+
+  alterarAluno() {
+    this.alunoService.putAluno(this.aluno).subscribe(
+      res => {
+        window.alert('Matricula alterada com sucesso !');
+        this.onCancelar.emit(true);
+      },
+      err => {
+        if (err.status == 401)
+          window.alert("Unauthorized")
+        else
+          window.alert("Erro inesperado no servidor")
+        this.onCancelar.emit(true);
+      }
+    );
+  }
+
+  incluirAluno() {
+    this.alunoService.postAluno(this.aluno).subscribe(
+      res => {
+        window.alert('Aluno matriculado com sucesso !');
+        this.onCancelar.emit(true);
+      },
+      err => {
+        if (err.status == 401)
+          window.alert("Unauthorized")
+        else
+          window.alert("Erro inesperado no servidor")
+        this.onCancelar.emit(true);
+      }
+    );
   }
 
   cancelar() {

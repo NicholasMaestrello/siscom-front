@@ -1,0 +1,40 @@
+<div class="card-body">
+  <p-table #dt [columns]="cols" [value]="cursos" width="100%" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20,30]" [scrollable]="true" scrollHeight="400px">
+    <ng-template pTemplate="caption">
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Procurar Curso" (input)="dt.filterGlobal($event.target.value, 'contains')"
+          style="width:auto">
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>ID</th>
+        <th>Modalidade</th>
+        <th>Responsavel</th>
+        <th>Nível</th>
+        <th>Quantidade de Alunos</th>
+        <th>Opções</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+      <tr>
+        <td>{{rowData.id}}</td>
+        <td>{{rowData.modalidade?.nome}}</td>
+        <td>{{rowData.responsavel}}</td>
+        <td>{{rowData.nivel}}</td>
+        <td>{{rowData.quantidadeAlunos}}</td>
+        <td>
+
+          <button type="button" class="btn btn-default" (click)="editCurso(rowData)">
+            <span class="glyphicon glyphicon-pencil"></span> Editar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="excluirCurso(rowData)">
+            <span class="glyphicon glyphicon-trash"></span> Excluir
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

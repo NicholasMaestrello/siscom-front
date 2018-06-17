@@ -1,0 +1,54 @@
+<div>
+  <div class="title-center">
+    <h1>Modalidades</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="modalidadeForm">
+        <div class="form-group">
+          <label for="modalidadeNome">Nome</label>
+          <input id="modalidadeNome" class="form-control" formControlName="nome" type="text" aria-describedby="nameHelp" maxlength="50"
+            [(ngModel)]="modalidade.nome" placeholder="Nome da Modalidade">
+          <span class="invalid-input" *ngIf="nome.dirty && nome.invalid">Informe um nome</span>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" [class.invalid-submit]="modalidadeForm.invalid" [disabled]="modalidadeForm.invalid"
+            (click)="save()">Salvar</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <p-table #dt [columns]="cols" [value]="modalidades" width="100%" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20,30]"
+        [scrollable]="true" scrollHeight="400px">
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Procurar Modalidade" (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto">
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th>ID</th>
+            <th>Modalidade</th>
+            <th>Opções</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+          <tr>
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.nome}}</td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="excluirModalidade(rowData)">
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+</div>
