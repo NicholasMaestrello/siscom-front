@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AlunoDTO } from '../../model/aluno.model';
 import { AlunoService } from './service/aluno.service';
 

@@ -76,7 +76,7 @@ export class ModalidadeComponent implements OnInit {
         window.alert('Modalidade alterada com sucesso');
         this.getModalidades();
         this.modalidade.nome = "";
-      }
+      },
       err => {
         if (err.status != 401)
           window.alert("Erro inesperado no servidor")

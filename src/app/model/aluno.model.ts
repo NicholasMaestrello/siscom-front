@@ -9,7 +9,7 @@ export class AlunoDTO {
 	cel: String;
 	tel: String;
 	paga: String;
-	dataEnt: Date;
+	dataEnt: Date | string;
 	dataVenc: Date;
 	cursos: CursoDTO[];
 }
